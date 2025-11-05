@@ -7,12 +7,20 @@
       <link rel="icon" type="image/x-icon" href="./img/weather-icon.webp">
 
     <link rel="stylesheet" href="style.css">
+        <!-- Font Awesome for icons -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+        <!-- Leaflet for map selection -->
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+            integrity="sha256-sA+e2H6k0k0s/4g4w0qgqAFb9r3b6b2g3p3p2U+0wY8=" crossorigin=""/>
 </head>
 <body>
 
     <div class="cold-bg" id="main-bg">
         <div class="myInput">
-            <input id="search-bar" type="text" placeholder="Search...">
+            <div class="search-container">
+                <input id="search-bar" type="text" placeholder="Search..." autocomplete="off">
+                <div id="city-suggestions" class="suggestions-dropdown"></div>
+            </div>
             <button id="search-button">Search</button>
         </div>
         
@@ -26,10 +34,38 @@
             <div class="weather" id="weather"></div>
         </div>
 
+        <div class="controls">
+            <button id="save-button" class="modern-button"><i class="fas fa-bookmark"></i> Save Location</button>
+            <button id="show-saved-button" class="modern-button"><i class="fas fa-list"></i> Show Saved</button>
+            <button id="compare-button" class="modern-button"><i class="fas fa-chart-bar"></i> Compare Selected</button>
+        </div>
 
+        <div id="map" aria-label="Map to pick location"></div>
+
+        <div id="saved-list" class="saved-list modern-cards" style="display:none;">
+            <div class="saved-header">
+                <h2>Saved Locations</h2>
+                <div class="saved-actions">
+                    <button class="select-all-btn modern-button-small" title="Select all for comparison">
+                        <i class="fas fa-check-double"></i> Select All
+                    </button>
+                    <button class="clear-all-btn modern-button-small" title="Clear selection">
+                        <i class="fas fa-times"></i> Clear
+                    </button>
+                </div>
+            </div>
+            <div class="saved-grid"></div>
+        </div>
+        
+        <div id="compare-view" class="compare-view" style="display:none;"></div>
     </div>
-    <script src="app.js"></script>
+
+    <!-- Script dependencies -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-o9N1j8gO9U8F6kH2a2V1Xqk3YxvOqv1zK+vE2aYB6zM=" crossorigin=""></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="app.js"></script>
 </body>
 
 </html>
